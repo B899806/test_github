@@ -7,8 +7,9 @@ jobs:
     steps:
     - uses: actions/checkout@main
     - uses: azure/arm-deploy@main
+    - uses: azure/login@main
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         resourceGroupName: Bhoomika-Rg
         templateLocation: B899806/test_github/stg.json
-        
+        deploymentName: newestt
