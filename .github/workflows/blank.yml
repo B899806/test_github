@@ -5,11 +5,15 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@main
-    - uses: azure/arm-deploy@main
-    - uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-        resourceGroupName: Bhoomika-Rg
-        templateLocation: B899806/test_github/stg.json
-        deploymentName: newestt
+      - uses: actions/checkout@v1
+
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - uses: azure/arm-deploy@v1
+        id: deploy
+        with:
+         resourceGroupName: Bhoomika-Rg
+         templateLocation: B899806/test_github/stg.json
+         deploymentName: newestt
