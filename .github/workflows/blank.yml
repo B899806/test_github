@@ -9,6 +9,6 @@ jobs:
     - uses: azure/arm-deploy@main
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-        resourceGroupName: Bhoomika-rg
+        resourceGroupName: Bhoomika-Rg
         templateLocation: B899806/test_github/stg.json
         
