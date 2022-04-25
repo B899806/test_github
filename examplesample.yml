@@ -18,6 +18,6 @@ steps:
         id: deploy
         with:
           scope: storageaccount
-          resourceGroupName: azurearmaction
+          resourceGroupName:  Bhoomika-rg
           template: stg.json
           deploymentName: github-advanced-test
