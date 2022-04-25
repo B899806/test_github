@@ -1,0 +1,23 @@
+   
+on:[push]
+ name:examplesample
+jobs:
+
+execuesample:
+runs-on: ubuntu-latest
+
+
+steps:
+      - uses: actions/checkout@v1
+
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - uses: azure/arm-deploy@v1
+        id: deploy
+        with:
+          scope: storageaccount
+          resourceGroupName:  Bhoomika-rg
+          template: stg.json
+          deploymentName: github-advanced-test
