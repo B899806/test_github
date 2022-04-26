@@ -9,8 +9,10 @@ jobs:
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+        allow-no-subscriptions: true
     - uses: azure/arm-deploy@v1
       with:
         resourceGroupName: Bhoomika-Rg
         template: ./stg.json
+        
         
