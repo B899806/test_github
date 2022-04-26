@@ -12,6 +12,7 @@ jobs:
         allow-no-subscriptions: true
     - uses: azure/arm-deploy@v1
       with:
+        subscriptionId: "50b51095-fe96-401c-9d4f-693cf6486f39"
         resourceGroupName: Bhoomika-Rg
         template: ./stg.json
         
