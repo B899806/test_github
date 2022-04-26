@@ -13,6 +13,7 @@ jobs:
             client-id: "9f67f27f-9c96-4f71-a384-fa6acd6f0648"
             tenant-id: "ab8614a3-38fa-4410-81cc-2cff09afdee1"
             subscription-id: "50b51095-fe96-401c-9d4f-693cf6486f39"
+            enable-AzPSSession: true
       - uses: azure/arm-deploy@v1
         id: deploy
         with:
