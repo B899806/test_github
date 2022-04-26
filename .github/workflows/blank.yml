@@ -11,5 +11,5 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         allow-no-subscriptions: true
     - run: |
-        az group deployment create -n github-dev -g Bhoomika-Rg --template-file test_github/stg.json
+        az group deployment create -n github-dev -g Bhoomika-Rg --template-file stg.json
    
