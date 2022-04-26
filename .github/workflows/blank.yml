@@ -8,7 +8,7 @@ jobs:
       - uses: actions/checkout@v1
 
       
-      - uses: azure/login@V1
+      - uses: azure/login@2.35
         with:
             client-id: "9f67f27f-9c96-4f71-a384-fa6acd6f0648"
             tenant-id: "ab8614a3-38fa-4410-81cc-2cff09afdee1"
