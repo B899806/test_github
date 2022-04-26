@@ -10,7 +10,7 @@ jobs:
       
       - uses: azure/actions/login@v1
         env:
-           creds: ${{ secrets.AZURE_CREDENTIALS }}
+           credentials: ${{ secrets.AZURE_CREDENTIALS }}
 
       - uses: azure/arm-deploy@v1
         id: deploy
