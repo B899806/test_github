@@ -13,5 +13,5 @@ jobs:
   
 
     - run: |
-       az login --service-principal -u "azure-cli-2022-04-21-16-16-58" -p "fd7dbb52-0364-403a-b4fe-eca1ac9bf02d" --tenant "ab8614a3-38fa-4410-81cc-2cff09afdee1"     
+       az login --service-principal -u "azure-cli-2022-04-21-16-16-58" -p "21b9d892-e8ef-4013-8ff7-ac23c97106e1" --tenant "ab8614a3-38fa-4410-81cc-2cff09afdee1"     
        az webapp list --query "[?state=='Running']"
