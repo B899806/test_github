@@ -8,12 +8,7 @@ jobs:
     - uses: actions/checkout@main
     - uses: azure/login@v1
       with:
-        "client-Id": "9f67f27f-9c96-4f71-a384-fa6acd6f0648"
-        "subscription-Id": "50b51095-fe96-401c-9d4f-693cf6486f39"
-        "tenant-Id": "ab8614a3-38fa-4410-81cc-2cff09afdee1"
-        enable-AzPSSession: false
-        environment: azurecloud
-        allow-no-subscriptions: true
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - run: |
         az group deployment create -n github-dev --aux-subs 50b51095-fe96-401c-9d4f-693cf6486f39 -g Bhoomika-Rg --template-file stg.json
