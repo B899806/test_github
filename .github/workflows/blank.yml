@@ -1,17 +1,23 @@
 on: [push]
-name: AzureARMSample
-
+name: Azure ARM
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+
+      # Checkout code
     - uses: actions/checkout@main
+
+      # Log into Azure
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-        allow-no-subscriptions: true
-  
 
-    - run: |
-       az login --service-principal -u "azure-cli-2022-04-21-16-16-58" -p "21b9d892-e8ef-4013-8ff7-ac23c97106e1" --tenant "ab8614a3-38fa-4410-81cc-2cff09afdee1"     
-       az webapp list --query "[?state=='Running']"
+      # Deploy ARM template
+    - name: Run ARM deploy
+      uses: azure/arm-deploy@v1
+      with:
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        resourceGroupName: ${{ secrets.AZURE_RG }}
+        template: ./azuredeploy.json
+       
