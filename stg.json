@@ -24,7 +24,7 @@
       }}
   },
   "variables": {
-   "SAName": "[concat('new','-',uniqueString(resourceGroup().id))]"
+   "SAName": "new12stgacc"
  },
   "resources": [
     {
