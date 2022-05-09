@@ -1,0 +1,24 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+  "parameters": {
+    "keyVaultName": {
+      "value": "Mykeyvault0062"
+    },
+    "tenantId": {
+      "value": "ab8614a3-38fa-4410-81cc-2cff09afdee1"
+    },
+    "objectId": {
+      "value": "1c04e2ce-5286-48d8-bb77-601956b21af4"
+    },
+    "secretName": {
+      "value": "MyAdminPassword"
+    },
+    "secretValue": {
+      "value": "Bhoomi"
+    },
+      "enabledForTemplateDeployment": {
+        "value": true
+      }
+    }
+  }
