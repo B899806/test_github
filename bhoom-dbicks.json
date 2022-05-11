@@ -28,9 +28,8 @@
       },
       "tags": {
 
-        "Product family": "[resourceGroup().tags['Product family']]",
-        "Environment Type": "[resourceGroup().tags['Environment Type']]"
-      },
+       
+        "Environment Type": "dev"
       "properties": {
         "ManagedResourceGroupId": "[concat(subscription().id, '/resourceGroups/', variables('managedResourceGroupName'))]"        
       }
