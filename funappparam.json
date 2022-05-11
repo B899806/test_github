@@ -3,14 +3,13 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "appName": {
-      "value": "NewBfunctionapp"
+      "value": "functionappsample"
     },
     "location": {
-      "value": "eastus",
-      "defaultValue": "[resourceGroup().location]"
+      "value": "eastus"
     },
     "serviceplanName": {
-      "value": "Newasp"
+      "value": "aspsample"
     },
     "serviceplanSkuName": {
       "value": "b1"
