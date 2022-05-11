@@ -6,8 +6,7 @@
       "type": "string"
     },
     "location": {
-      "type": "string",
-      "defaultValue": "[resourceGroup().location]"
+      "type": "string"
     },
     "serviceplanName": {
         "type": "string" 
@@ -65,7 +64,7 @@
         "httpsOnly": true
       }
 
-    },
+    }
 	
   ],
   "outputs": {
