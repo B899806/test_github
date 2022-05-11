@@ -14,7 +14,7 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       # Deploy ARM template
-    - name: Run ARM deploy
+    - name: deploy storage 
       uses: azure/arm-deploy@v1
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
@@ -22,10 +22,36 @@ jobs:
         template: ./stg.json
         parameters: ./stg.pam.json
        
-    - name: Run ARM deploy
+    - name:  deploy keyvault 
       uses: azure/arm-deploy@v1
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
         template: ./keyvault.json
         parameters: ./keyvaultparam.json
+        
+    - name:  deploy functionapp 
+      uses: azure/arm-deploy@v1
+      with:
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        resourceGroupName: ${{ secrets.AZURE_RG }}
+        template: ./bhoom-fapp.json
+        parameters: ./funappparam.json
+        
+    - name:  deploy eventhub 
+      uses: azure/arm-deploy@v1
+      with:
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        resourceGroupName: ${{ secrets.AZURE_RG }}
+        template: ./bhoom-evenhub.json
+        parameters: ./eventhubparam.json
+
+    - name:  deploy databricks 
+      uses: azure/arm-deploy@v1
+      with:
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        resourceGroupName: ${{ secrets.AZURE_RG }}
+        template: ./bhoom-dbicks.json
+        parameters: ./databricksparamnew.json
+
+
