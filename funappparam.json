@@ -3,13 +3,13 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "appName": {
-      "value": "functionappsample"
+      "value": "functionappsample09878"
     },
     "location": {
       "value": "eastus"
     },
     "serviceplanName": {
-      "value": "aspsample"
+      "value": "aspsample
     },
     "serviceplanSkuName": {
       "value": "b1"
