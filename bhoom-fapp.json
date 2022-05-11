@@ -28,8 +28,8 @@
       "dependsOn": [],
       "tags": {
 
-        "Product family": "[resourceGroup().tags['Product family']]",
-        "Environment Type": "[resourceGroup().tags['Environment Type']]"
+        
+        "Environment Type": "dev"
       },
       "properties": {
         "name": "[parameters('serviceplanName')]",
@@ -45,8 +45,7 @@
       "kind": "functionapp",
       "tags": {
 
-        "Product family": "[resourceGroup().tags['Product family']]",
-        "Environment Type": "[resourceGroup().tags['Environment Type']]"
+        "Environment Type": "dev"
       },
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms', parameters('serviceplanName'))]"
