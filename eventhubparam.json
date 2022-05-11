@@ -4,7 +4,7 @@
   "parameters": {
     "namespace": {
 
-      "value": "bdr-event-hubs"
+      "value": "eventhub-sample"
     },
     "location": {
       "value": "eastus"
@@ -14,7 +14,7 @@
 
     },
     "skucapacity": {
-      "value": "1"
+      "value": "basic"
     }
   }
 }
