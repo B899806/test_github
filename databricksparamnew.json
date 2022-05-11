@@ -4,7 +4,7 @@
 
   "parameters": {
     "workspaceName": {
-      "value": "databricksnew"
+      "value": "databrickssample"
     },
     "pricingTier": {
       "value": "standard"
