@@ -107,21 +107,26 @@
           "name": "[parameters('vaultSku')]",
           "family": "A"
         }
-      },
-      "resources": [
-        {
-          "type": "secrets",
-          "name": "[parameters('secretName')]",
-          "apiVersion": "2015-06-01",
-          "tags": { "displayName": "secret" },
-          "properties": {
-            "value": "[parameters('secretValue')]"
-          },
-          "dependsOn": [
-            "[concat('Microsoft.KeyVault/vaults/', parameters('keyVaultName'))]"
-          ]
+      }
+    },
+      {
+            "type": "Microsoft.KeyVault/vaults/secrets",
+            "apiVersion": "2018-02-14",
+            "name": "[concat(parameters('keyVaultName'), '/', parameters('secretsObject').secrets[copyIndex()].secretName)]",
+            "dependsOn": [
+                "[concat('Microsoft.KeyVault/vaults/', parameters('keyVaultName'))]"
+            ],
+            "properties": {
+                "value": "[parameters('secretsObject').secrets[copyIndex()].secretValue]"
+            },
+            "copy": {
+                "name": "secretsCopy",
+                "count": "[length(parameters('secretsObject').secrets)]",
+                "mode":"serial",
+                "batchSize":1
+               
+            }
         }
-      ]
     }
   ]
 }
