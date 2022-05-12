@@ -27,6 +27,10 @@
         "description": "Permissions to grant user to keys in the vault. Valid values are: all, create, import, update, get, list, delete, backup, restore, encrypt, decrypt, wrapkey, unwrapkey, sign, and verify."
       }
     },
+    "secretsObject":
+    {
+       "type": "object"
+    },
     "secretsPermissions": {
       "type": "array",
       "defaultValue": [ "all" ],
