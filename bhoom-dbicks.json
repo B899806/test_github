@@ -30,8 +30,10 @@
 
        
         "Environment Type": "dev"
+      },
       "properties": {
         "ManagedResourceGroupId": "[concat(subscription().id, '/resourceGroups/', variables('managedResourceGroupName'))]"        
       }
     }
   ]
+}
