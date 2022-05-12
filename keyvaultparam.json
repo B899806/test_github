@@ -17,6 +17,21 @@
     "secretValue": {
       "value": "Bhoomi"
     },
+     "secretsObject": {
+         "value" :  {
+                "secrets": [
+                    {
+                        "secretName":"key1",
+                        "secretValue":"value1"
+                    },
+                    {
+                        "secretName":"key2",
+                        "secretValue":"value2"
+                    }
+                    ]
+         }
+                    
+     },
       "enabledForTemplateDeployment": {
         "value": true
       }
