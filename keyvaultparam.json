@@ -27,13 +27,13 @@
                     {
                         "secretName":"key2",
                         "secretValue":"value2"
-                    }
+                    },
                     {
                       "secretName":"key3",
                         "secretValue":"value3"
                     
                     
-                    },
+                    }
                     ]
          }
                     
