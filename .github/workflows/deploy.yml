@@ -19,8 +19,8 @@ jobs:
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
-        template: ./stg.json
-        parameters: ./stg.pam.json
+        template: ./stg.bicep
+        parameters: ./paamsg.json
        
     - name:  deploy keyvault 
       uses: azure/arm-deploy@v1
