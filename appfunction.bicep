@@ -12,7 +12,11 @@ resource serviceplan 'Microsoft.Web/serverfarms@2020-06-01' = {
 
   properties: {
         name:serviceplanName
-       maximumNumberOfWorkers: 1
+       perSiteScaling: false
+    maximumElasticWorkerCount: 1
+    isSpot: false
+    reserved: false
+    isXenon: false
       }
 }
 
