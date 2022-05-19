@@ -14,6 +14,14 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       # Deploy ARM template
+     
+    - name:  deploy eventhub 
+      uses: azure/arm-deploy@v1
+      with:
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        resourceGroupName: ${{ secrets.AZURE_RG }}
+        template: ./eventhub.bicep 
+      
     - name:  deploy keyvault 
       uses: azure/arm-deploy@v1
       with:
