@@ -10,21 +10,21 @@ resource serviceplan 'Microsoft.Web/serverfarms@2015-08-01' = {
     name: serviceplanSkuName
   }
 
-  "properties": {
-        name":serviceplanName
+  properties: {
+        name:serviceplanName
         numberOfWorkers: 1
       }
 }
 
 resource fapp 'Microsoft.Web/sites@2016-08-01' = {
-  name: AppName
+  name: appName
   location: location
   kind:'functionapp'
 dependsOn: [
   serviceplan
 ]
 identity:{
-        type: SystemAssigned
+        type: 'SystemAssigned'
       }
   properties: {
         serverFarmId: resourceId('Microsoft.Web/serverfarms', serviceplanName)
