@@ -12,7 +12,7 @@ resource serviceplan 'Microsoft.Web/serverfarms@2015-08-01' = {
 
   properties: {
         name:serviceplanName
-        numberOfWorkers: 1
+       maximumNumberOfWorkers: 1
       }
 }
 
