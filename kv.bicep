@@ -1,15 +1,9 @@
-param keyVaultName string='testkjnvkv'
-param  tenantId string ='b8614a3-38fa-4410-81cc-2cff09afdee1'
-param objectId string ='1c04e2ce-5286-48d8-bb77-601956b21af4'
-param enabledForTemplateDeployment bool =true
-param keysPermissions array =['all']
-param secretsPermissions array =['all']
-param vaultSku = 'Standard'
-param enabledForDeployment bool =false
+param keyVaultName string
+param  tenantId string
+param objectId string 
 param enabledForTemplateDeployment bool
-param enableVaultForVolumeEncryption bool =false
-param secretName string ='test'
-param secretValue securestring ='password'
+param secretName string
+param secretValue securestring 
      
 resource keyvault 'Microsoft.KeyVault/vaults@2015-06-01' = {
     
@@ -17,22 +11,22 @@ resource keyvault 'Microsoft.KeyVault/vaults@2015-06-01' = {
      location: location
       
       properties: {
-        "enabledForDeployment": enabledForDeployment
-        "enabledForTemplateDeployment":enabledForTemplateDeployment
-        "enabledForVolumeEncryption": enableVaultForVolumeEncryption
-        "tenantId": tenantId
-        "accessPolicies": [
+       
+        enabledForTemplateDeployment:enabledForTemplateDeployment
+       
+        tenantId: tenantId
+        accessPolicies: [
           {
-            "tenantId": tenantId
-            "objectId": objectId
-            "permissions": {
-              "keys": keysPermissions
-              "secrets": secretsPermissions
+            tenantId: tenantId
+            objectId: objectId
+            permissions: {
+              'get'
+              'list'
             }
           }
         ]
         sku: {
-          name: vaultSku
+          name: 'standard'
           family: 'A'
         }
       }
