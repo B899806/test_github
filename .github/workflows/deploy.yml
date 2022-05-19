@@ -36,7 +36,7 @@ jobs:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
         template: ./appfunction.bicep
-        #parameters: ./funappparam.json
+        parameters: ./funappparam.json
         
     - name:  deploy eventhub 
       uses: azure/arm-deploy@v1
