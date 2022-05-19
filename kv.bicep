@@ -6,15 +6,14 @@ param secretName string
 param secretValue securestring 
      
 resource keyvault 'Microsoft.KeyVault/vaults@2015-06-01' = {
-    
-      name: keyVaultName
-     location: location
-      
+   name: keyvaultName
+  location: location
       properties: {
+       enabledForDeployment: false
+    enabledForDiskEncryption: false
+    enabledForTemplateDeployment: false
+       tenantId: tenantId
        
-        enabledForTemplateDeployment:enabledForTemplateDeployment
-       
-        tenantId: tenantId
         accessPolicies: [
           {
             tenantId: tenantId
@@ -28,6 +27,7 @@ resource keyvault 'Microsoft.KeyVault/vaults@2015-06-01' = {
         sku: {
           name: 'standard'
           family: 'A'
+        }
         }
       }
     
