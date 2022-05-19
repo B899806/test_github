@@ -27,8 +27,8 @@ identity:{
         type: 'SystemAssigned'
       }
   properties: {
-        serverFarmId: resourceId('Microsoft.Web/serverfarms', serviceplanName)
-        hostingEnvironment: ''
+        serverFarmId: serviceplan.id
+       enabled: true
         clientAffinityEnabled: false
         siteConfig: {
           alwaysOn: true
