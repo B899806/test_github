@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
   "parameters": {
     "keyVaultName": {
-      "value": "Mykeyvault062"
+      "value": "Mykeyvault06267"
     },
     "tenantId": {
       "value": "ab8614a3-38fa-4410-81cc-2cff09afdee1"
