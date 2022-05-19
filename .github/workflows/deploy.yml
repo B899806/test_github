@@ -21,6 +21,7 @@ jobs:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
         template: ./eventhub.bicep 
+        parameters: ./eventhubparam.json
       
     - name:  deploy keyvault 
       uses: azure/arm-deploy@v1
