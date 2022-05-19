@@ -37,7 +37,7 @@ jobs:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
         template: ./kv.bicep
-        parameters: ./keyvaultparam.json
+        parameters: ./kv-param.json
    
     - name:  deploy functionapp 
       uses: azure/arm-deploy@v1
