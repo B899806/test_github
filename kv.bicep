@@ -1,17 +1,16 @@
 param keyVaultName string
 param  tenantId string
 param objectId string 
-param enabledForTemplateDeployment bool
 param secretName string
-param secretValue securestring 
-     
+param secretValue string 
+param location string
 resource keyvault 'Microsoft.KeyVault/vaults@2015-06-01' = {
-   name: keyvaultName
+   name: keyVaultName
   location: location
       properties: {
        enabledForDeployment: false
     enabledForDiskEncryption: false
-    enabledForTemplateDeployment: false
+    enabledForTemplateDeployment: true
        tenantId: tenantId
        
         accessPolicies: [
@@ -30,17 +29,5 @@ resource keyvault 'Microsoft.KeyVault/vaults@2015-06-01' = {
         }
         }
       }
-    
-   resource keyvaultaccesspolicy 'Microsoft.KeyVault/vaults/secrets@2018-02-14' = {
-           parent:keyvault
-           name:secretName
-            dependsOn: [
-                keyVaultName
-            ]
-            properties: {
-                value: secretValue
-            }
-            
-        
-    }
+  
 
