@@ -1,30 +1,43 @@
-// scope
-targetScope = 'resourceGroup'
-
-// parameters
-param storageAccountType string
+param appName string
 param location string
-param storagename string
-
-
-// resource definition
-resource stg 'Microsoft.Storage/storageAccounts@2021-02-01' = {
-  name: storagename
-  location: location
+param serviceplanName string
+param serviceplanSkuName string
  
-  kind: 'StorageV2'
+resource serviceplan 'Microsoft.Web/serverfarms@2015-08-01' = {
+  name: serviceplanName
+  location: location
   sku: {
-    name: storageAccountType
+    name: serviceplanSkuName
   }
+
+  "properties": {
+        name":serviceplanName
+        numberOfWorkers: 1
+      }
+}
+
+resource fapp 'Microsoft.Web/sites@2016-08-01' = {
+  name: AppName
+  location: location
+  kind:'functionapp'
+dependsOn: [
+  serviceplan
+]
+identity:{
+        type: SystemAssigned
+      }
   properties: {
-
-  allowBlobPublicAccess: false
+        serverFarmId: resourceId('Microsoft.Web/serverfarms', serviceplanName)
+        hostingEnvironment: ""
+        clientAffinityEnabled: false
+        siteConfig: {
+          alwaysOn: true
+        }
+        httpsOnly: true
+      }
 
 }
-
-  
-
-  
-}
+   
 
 
+   
