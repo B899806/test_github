@@ -1,43 +1,26 @@
-param appName string
+
+param storageAccountType string
 param location string
-param serviceplanName string
-param serviceplanSkuName string
- 
-resource serviceplan 'Microsoft.Web/serverfarms@2015-08-01' = {
-  name: serviceplanName
+param storagename string
+
+
+// resource definition
+resource stg 'Microsoft.Storage/storageAccounts@2021-02-01' = {
+  name: storagename
   location: location
+  tags: tags
+  kind: 'StorageV2'
   sku: {
-    name: serviceplanSkuName
+    name: storageAccountType
   }
-
-  "properties": {
-        name":serviceplanName
-        numberOfWorkers: 1
-      }
-}
-
-resource fapp 'Microsoft.Web/sites@2016-08-01' = {
-  name: AppName
-  location: location
-  kind:'functionapp'
-dependsOn: [
-  serviceplan
-]
-identity:{
-        type: SystemAssigned
-      }
   properties: {
-        serverFarmId: resourceId('Microsoft.Web/serverfarms', serviceplanName)
-        hostingEnvironment: ""
-        clientAffinityEnabled: false
-        siteConfig: {
-          alwaysOn: true
-        }
-        httpsOnly: true
-      }
+
+  allowBlobPublicAccess: false
 
 }
-   
 
 
-   
+
+
+}
+
