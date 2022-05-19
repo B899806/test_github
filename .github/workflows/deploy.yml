@@ -20,7 +20,7 @@ jobs:
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
-        template: .db.bicep
+        template: ./db.bicep
         parameters: ./databricksparamnew.json
 
     - name:  deploy eventhub 
