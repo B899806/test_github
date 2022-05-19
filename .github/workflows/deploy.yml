@@ -56,7 +56,7 @@ jobs:
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
-        template: ./stg.bicep>
+        template: ./stg.bicep
         parameters: ./paamsg.json
         
         
