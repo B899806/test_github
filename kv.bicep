@@ -16,8 +16,12 @@ resource keyvault 'Microsoft.KeyVault/vaults@2015-06-01' = {
             tenantId: tenantId
             objectId: objectId
             permissions: {
-              'get'
+             secrets:[
               'list'
+              ]
+              keys:[
+              'get'
+              ]
             }
           }
         ]
