@@ -11,10 +11,8 @@
     "objectId": {
       "value": "1c04e2ce-5286-48d8-bb77-601956b21af4"
     },
-      "location": {
-      "value": "eastus"
-    },
-    "secretName": {
+      
+  "secretName": {
       "value": "MyAdminPassword"
     },
     "secretValue": {
