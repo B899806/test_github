@@ -1,6 +1,6 @@
-param namespace string='testeventhb'
-param  location string ='eastus'
-param skuname string ='basic'
+param namespace string= 'eventhubnew'
+param  location string = 'eastus'
+param skuname string = 'basic'
 param skucapacity string = 'basic'
   
 
