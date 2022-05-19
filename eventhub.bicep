@@ -1,7 +1,7 @@
-param namespace string= 'eventhubnew'
-param  location string = 'eastus'
-param skuname string = 'basic'
-param skucapacity string = 'basic'
+param namespace string
+param  location string 
+param skuname string 
+param skucapacity string 
   
 
 
