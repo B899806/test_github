@@ -4,7 +4,7 @@
 
   "parameters": {
     "workspaceName": {
-      "value": "databrickssample"
+      "value": "databrickssampledr"
     },
     "pricingTier": {
       "value": "standard"
