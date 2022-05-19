@@ -8,7 +8,7 @@ param storagename string
 resource stg 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   name: storagename
   location: location
-  tags: tags
+  
   kind: 'StorageV2'
   sku: {
     name: storageAccountType
