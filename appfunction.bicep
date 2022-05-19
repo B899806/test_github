@@ -11,7 +11,7 @@ resource serviceplan 'Microsoft.Web/serverfarms@2020-06-01' = {
   }
 
   properties: {
-        name:serviceplanName
+       
        perSiteScaling: false
     maximumElasticWorkerCount: 1
     isSpot: false
@@ -24,9 +24,7 @@ resource fapp 'Microsoft.Web/sites@2016-08-01' = {
   name: appName
   location: location
   kind:'functionapp'
-dependsOn: [
-  serviceplan
-]
+
 identity:{
         type: 'SystemAssigned'
       }
