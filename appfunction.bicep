@@ -32,9 +32,6 @@ identity:{
         serverFarmId: serviceplan.id
        enabled: true
         clientAffinityEnabled: false
-        siteConfig: {
-          alwaysOn: true
-        }
         httpsOnly: true
       }
 
