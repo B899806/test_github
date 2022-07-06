@@ -20,32 +20,32 @@ jobs:
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
-        template: ./db.bicep
-        parameters: ./databricksparamnew.json
+        template: .infra/bicep/db.bicep
+        parameters: .infra/bicep/main.bicep
 
     - name:  deploy eventhub 
       uses: azure/arm-deploy@v1
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
-        template: ./eventhub.bicep 
-        parameters: ./eventhubparam.json
+        template: .infra/bicep/eventhub.bicep 
+        parameters: .infra/bicep/main.bicep
       
     - name:  deploy keyvault 
       uses: azure/arm-deploy@v1
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
-        template: ./kv.bicep
-        parameters: ./kv-param.json
+        template: .infra/bicep/kv.bicep
+        parameters: .infra/bicep/main.bicep
    
     - name:  deploy functionapp 
       uses: azure/arm-deploy@v1
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
-        template: ./appfunction.bicep
-        parameters: ./funappparam.json
+        template: .infra/bicep/appfunction.bicep
+        parameters: .infra/bicep/main.bicep
         
        
    
@@ -56,8 +56,8 @@ jobs:
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
-        template: ./stg.bicep
-        parameters: ./paamsg.json
+        template: .infra/bicep/stg.bicep
+        parameters: .infra/bicep/main.bicep
         
         
         
@@ -66,15 +66,30 @@ jobs:
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
-        template: ./bhoom-evenhub.json
-        parameters: ./eventhubparam.json
+        template: .infra/json/bhoom-evenhub.json
+        parameters: .infra/json/eventhubparam.json
 
     - name:  deploy databricks 
       uses: azure/arm-deploy@v1
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
-        template: ./bhoom-dbicks.json
-        parameters: ./databricksparamnew.json
+        template: .infra/json/bhoom-dbicks.json
+        parameters: .infra/json/databricksparamnew.json
 
-
+   
+    - name:  deploy keyvault 
+      uses: azure/arm-deploy@v1
+      with:
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        resourceGroupName: ${{ secrets.AZURE_RG }}
+        template: .infra/json/keyvault.json
+        parameters: .infra/json/keyvaultparam.json
+        
+    - name:  deploy Functionapp 
+      uses: azure/arm-deploy@v1
+      with:
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        resourceGroupName: ${{ secrets.AZURE_RG }}
+        template: .infra/json/bhoom-fapp.json
+        parameters: .infra/json/funappparam.json
