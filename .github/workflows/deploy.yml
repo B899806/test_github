@@ -20,8 +20,8 @@ jobs:
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
-        template: ./infra/bicep/db.bicep
-        parameters: ./infra/bicep/main.bicep
+        template: infra/bicep/db.bicep
+        parameters: infra/bicep/main.bicep
 
     - name:  deploy eventhub 
       uses: azure/arm-deploy@v1
