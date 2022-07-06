@@ -28,7 +28,7 @@ resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
 
 module eventhub './eventhub.bicep' = {
   name: 'EventHubDeployment'
-  scope: rg    // Deployed in the scope of resource group we created above
+  scope: az.resourceGroup(rgname)    // Deployed in the scope of resource group we created above
   params: {
       location: location
       EventHubPrefix: prefix
