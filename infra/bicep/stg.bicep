@@ -9,7 +9,7 @@ param storageAccountType string
 param location string = resourceGroup().location
 param storageprefix string //from main
 
-var storagAccountename = '${storageprefix}stg${uniqueString(resourceGroup().id)}'
+var storagAccountename = '${storageprefix}-stg'
 
 // resource definition
 resource StorageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
