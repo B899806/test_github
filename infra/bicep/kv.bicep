@@ -1,7 +1,7 @@
 param keyvaultname string
 param location string
 param secretname string
-param tenantid string
+param tenantid string = 'ab8614a3-38fa-4410-81cc-2cff09afdee1'
 
 resource keyvault 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
   name: keyvaultname
