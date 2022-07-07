@@ -37,7 +37,7 @@ module eventhub './eventhub.bicep' = {
 }
 
 module keyvault 'kv.bicep' = {
-  scope: rg
+  scope: 'kvdeployment'
   name: az.resourceGroup(rgname)
   params: {
     location: location
@@ -49,7 +49,7 @@ module keyvault 'kv.bicep' = {
 
 module stg './stg.bicep' = {
   name: 'storageDeployment'
-  scope: rg    // Deployed in the scope of resource group we created above
+  scope: az.resourceGroup(rgname) // Deployed in the scope of resource group we created above
   params: {
       location: location
       storageprefix: prefix
@@ -59,7 +59,7 @@ module stg './stg.bicep' = {
 
 module appfunction './appfunction.bicep' = {
   name: 'appfunctionDeployment'
-  scope: rg    // Deployed in the scope of resource group we created above
+  scope: az.resourceGroup(rgname)    // Deployed in the scope of resource group we created above
    params:{
     storageprefix: storageprefix
     location:location
@@ -81,7 +81,7 @@ module appfunction './appfunction.bicep' = {
 
 module databricksWS './db.bicep' = {
   name: 'databricksWSDeployment'
-  scope: rg    // Deployed in the scope of resource group we created above
+  scope: az.resourceGroup(rgname)    // Deployed in the scope of resource group we created above
   params: {
     location: location
     DataBricksWSprefix: prefix
