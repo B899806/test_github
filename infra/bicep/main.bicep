@@ -4,15 +4,15 @@
 targetScope = 'resourceGroup'
 
 param location string = 'eastus2'
-param prefix string = 'projectname' // add prefix you want add to resources
+param prefix string = 'as' // add prefix you want add to resources
 param rgname string = 'Bhoomika_GitAR'
 param keyvaultname string = 'keyvault-proj'
 param vnetid string = '' // provide vnet if for network access
 
 //param for function app
-param function_app_name string = 'mjisaak-bicep-func'
-param appservice_plan_name string = 'mjisaak-bicep-asp'
-param app_insights_name string = 'mjisaak-bicep-appinsights'
+param function_app_name string = 'bicep-func'
+param appservice_plan_name string = 'bicep-asp'
+param app_insights_name string = 'bicep-appinsights'
 param storageprefix string = prefix
 
 output stgaccountid string = stg.outputs.stgaccountid
