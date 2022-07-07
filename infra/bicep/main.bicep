@@ -5,7 +5,7 @@ targetScope = 'resourceGroup'
 
 param location string = 'eastus2'
 param prefix string = 'projectname' // add prefix you want add to resources
-param rgname string = 'Bhoomika_GitAR'
+param rgname string = 'rg-projectname'
 param keyvaultname string = 'keyvault-proj'
 param vnetid string = '' // provide vnet if for network access
 
@@ -25,20 +25,9 @@ output stgaccountapiversion string = stg.outputs.stgaccountapiversion
   location: location
 }*/
 
-
-module eventhub './eventhub.bicep' = {
-  name: 'EventHubDeployment'
-  scope: az.resourceGroup(rgname)    // Deployed in the scope of resource group we created above
-  params: {
-      location: location
-      EventHubPrefix: prefix
-      VNetsubnetIdForEndpoint: vnetid
-  }
-}
-
 module keyvault 'kv.bicep' = {
-  scope: 'kvdeployment'
-  name: az.resourceGroup(rgname)
+  scope: az.resourceGroup(rgname)
+  name: 'keyvaultDeployment'
   params: {
     location: location
     secretname: 'keyvaultname-secret'
@@ -49,7 +38,7 @@ module keyvault 'kv.bicep' = {
 
 module stg './stg.bicep' = {
   name: 'storageDeployment'
-  scope: az.resourceGroup(rgname) // Deployed in the scope of resource group we created above
+  scope: az.resourceGroup(rgname)    // Deployed in the scope of resource group we created above
   params: {
       location: location
       storageprefix: prefix
@@ -88,4 +77,14 @@ module databricksWS './db.bicep' = {
     pricingTier: 'premium'
     disablePublicIp: false
 }
+}
+
+module eventhub './eventhub.bicep' = {
+  name: 'EventHubDeployment'
+  scope: az.resourceGroup(rgname)    // Deployed in the scope of resource group we created above
+  params: {
+      location: location
+      EventHubPrefix: prefix
+      VNetsubnetIdForEndpoint: vnetid
+  }
 }
