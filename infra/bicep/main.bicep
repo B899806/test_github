@@ -5,7 +5,7 @@ targetScope = 'subscription'
 
 param location string = 'eastus2'
 param prefix string = 'projectname' // add prefix you want add to resources
-param rgname string = 'rg-projectname'
+param rgname string = 'Bhoomika_GitAR'
 param keyvaultname string = 'keyvault-proj'
 param vnetid string = '' // provide vnet if for network access
 
