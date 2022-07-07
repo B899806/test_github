@@ -1,7 +1,7 @@
 // =========== main.bicep ===========
 
 // Setting target scope
-targetScope = 'subscription'
+targetScope = 'resourceGroup'
 
 param location string = 'eastus2'
 param prefix string = 'projectname' // add prefix you want add to resources
@@ -20,10 +20,10 @@ output stgaccountname string = stg.outputs.stgaccountname
 output stgaccountapiversion string = stg.outputs.stgaccountapiversion
 
 
-resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
+/*resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: rgname
   location: location
-}
+}*/
 
 
 module eventhub './eventhub.bicep' = {
@@ -38,7 +38,7 @@ module eventhub './eventhub.bicep' = {
 
 module keyvault 'kv.bicep' = {
   scope: rg
-  name: 'keyvaultDeployment'
+  name: az.resourceGroup(rgname)
   params: {
     location: location
     secretname: 'keyvaultname-secret'
