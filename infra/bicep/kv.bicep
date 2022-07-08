@@ -27,7 +27,7 @@ resource keyvault 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
     enabledForTemplateDeployment: true
     enableSoftDelete: true
     softDeleteRetentionInDays: 90
-    enableRbacAuthorization: true
+    enableRbacAuthorization: false
     tenantId:'ab8614a3-38fa-4410-81cc-2cff09afdee1'
   }
 } 
