@@ -31,7 +31,6 @@ module keyvault 'kv.bicep' = {
   params: {
     location: location
     secretname: 'keyvaultname-secret'
-    tenantid: ''
     keyvaultname: keyvaultname
   }
 }
