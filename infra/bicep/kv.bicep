@@ -1,7 +1,6 @@
 param keyvaultname string
 param location string
 param secretname string
-param tenantid string = 'ab8614a3-38fa-4410-81cc-2cff09afdee1'
 
 resource keyvault 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
   name: keyvaultname
@@ -11,11 +10,25 @@ resource keyvault 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
       family: 'A'
       name: 'standard'
     }
+    accessPolicies: [
+      {
+      objectId: 'adb3c21a-ee9a-4066-9832-c7cbfa784d5e'
+      tenantId: 'ab8614a3-38fa-4410-81cc-2cff09afdee1'
+        permissions: {
+          keys:[
+            'all'
+          ]
+          secrets:[
+            'all'
+          ]
+        }
+      }
+    ]
     enabledForTemplateDeployment: true
     enableSoftDelete: true
     softDeleteRetentionInDays: 90
     enableRbacAuthorization: true
-    tenantId: tenantid
+    tenantId:'ab8614a3-38fa-4410-81cc-2cff09afdee1'
   }
 } 
 
