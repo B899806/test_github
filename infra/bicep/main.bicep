@@ -6,7 +6,7 @@ targetScope = 'resourceGroup'
 param location string = 'eastus2'
 param prefix string = 'as' // add prefix you want add to resources
 param rgname string = 'Bhoomika_GitAR'
-param keyvaultname string = 'keyvault-proj'
+param keyvaultname string = 'kv-allsc'
 param vnetid string = '' // provide vnet if for network access
 
 //param for function app
