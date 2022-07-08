@@ -87,11 +87,7 @@ resource function_app 'Microsoft.Web/sites@2020-12-01' = {
         }
         {
           name: 'FUNCTIONS_WORKER_RUNTIME'
-          value: 'node'
-        }
-        {
-          name: 'WEBSITE_NODE_DEFAULT_VERSION'
-          value: '~14'
+          value: 'dotnet'
         }
         {
           name: 'WEBSITE_RUN_FROM_PACKAGE'
