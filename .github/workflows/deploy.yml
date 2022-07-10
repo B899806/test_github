@@ -6,7 +6,7 @@ jobs:
     steps:
 
       # Checkout code !
-    - uses: actions/checkout@main
+    - uses: ./.github/actions/deploy.yaml
 
       # Log into Azure
     - uses: azure/login@v1
