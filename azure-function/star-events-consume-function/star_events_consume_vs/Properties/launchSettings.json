@@ -1,9 +1,0 @@
-{
-  "profiles": {
-    "star_events_consume_vs": {
-      "commandName": "Project",
-      "commandLineArgs": "--port 7138",
-      "launchBrowser": false
-    }
-  }
-}
