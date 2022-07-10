@@ -1,25 +1,22 @@
-name: .NET
-
+name: .NET Function build from sln
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
+  workflow_dispatch
 jobs:
-  build:
-
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
+      # Checkout code
+    - uses: actions/checkout@main
+    
     - name: Setup .NET
-      uses: actions/setup-dotnet@v2
+      uses: actions/checkout@main
       with:
         dotnet-version: 5.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+
+    # dotnet build and publish
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
+      
+    - name: dotnet publish
+      run: |
+        dotnet publish -c Release -o allsecfunction
