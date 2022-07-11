@@ -7,7 +7,6 @@ param location string = 'eastus2'
 param prefix string = 'as' // add prefix you want add to resources
 param rgname string = 'Bhoomika_GitAR'
 param keyvaultname string = 'kv-allsc'
-param vnetid string = 'adr_vn/default' // provide vnet if for network access
 
 //param for function app
 param function_app_name string = 'bicep-func'
@@ -75,7 +74,15 @@ module databricksWS './db.bicep' = {
     DataBricksWSprefix: prefix
     pricingTier: 'premium'
     disablePublicIp: false
+  }
 }
+
+module vnet './vNet.bicep' = {
+  name: 'vNetDeployment'
+  scope: az.resourceGroup(rgname)    // Deployed in the scope of resource group we created above
+  params: {
+      location: location
+  }
 }
 
 module eventhub './eventhub.bicep' = {
