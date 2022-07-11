@@ -91,6 +91,6 @@ module eventhub './eventhub.bicep' = {
   params: {
       location: location
       EventHubPrefix: prefix
-      VNetsubnetIdForEndpoint: vnetid
+      VNetsubnetIdForEndpoint: vnet.outputs.subnetIdForEndpoint
   }
 }
