@@ -7,7 +7,7 @@ param location string = 'eastus2'
 param prefix string = 'as' // add prefix you want add to resources
 param rgname string = 'Bhoomika_GitAR'
 param keyvaultname string = 'kv-allsc'
-param vnetid string = '' // provide vnet if for network access
+param vnetid string = 'adr_vn/default' // provide vnet if for network access
 
 //param for function app
 param function_app_name string = 'bicep-func'
