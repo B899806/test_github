@@ -20,3 +20,12 @@ jobs:
     - name: dotnet publish
       run: |
         dotnet publish -c Release -o allsecfunction
+        
+    - name: Download a Build Artifact
+      uses: actions/download-artifact@v3.0.0
+      with:
+    # Artifact name
+          name: eventfunction
+    # Destination path
+          path: ./
+
