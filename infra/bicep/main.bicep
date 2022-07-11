@@ -77,7 +77,7 @@ module databricksWS './db.bicep' = {
   }
 }
 
-module vnet './vNet.bicep' = {
+module vnet './vnet.bicep' = {
   name: 'vNetDeployment'
   scope: az.resourceGroup(rgname)    // Deployed in the scope of resource group we created above
   params: {
