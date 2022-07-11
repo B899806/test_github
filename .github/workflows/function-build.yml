@@ -19,7 +19,7 @@ jobs:
       
     - name: dotnet publish
       run: |
-        dotnet publish -c Release -o allsecfunction
+        dotnet publish -c Release -o ./allsecfunction
         
     - name: Download a Build Artifact
       uses: actions/download-artifact@v3.0.0
