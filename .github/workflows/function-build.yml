@@ -34,5 +34,5 @@ jobs:
       with:
           repo: B899806/test_github
           name: eventfunction
-          path: ../eventhubfunction/*.zip
+          path: ../eventhubfunction
 
