@@ -27,7 +27,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
           name: eventfunction
-          path: ./allsecfunction
+          path: ./eventhubfunction/function.zip
           
     - name: Download a Build Artifact
       uses: actions/download-artifact@v3.0.0
