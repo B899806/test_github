@@ -91,7 +91,7 @@ resource function_app 'Microsoft.Web/sites@2020-12-01' = {
         }
         {
           name: 'WEBSITE_RUN_FROM_PACKAGE'
-          value: 'file/from/build'
+          value: '~/eventhubfunction/*.zip'
         }
       ]
     }
