@@ -49,7 +49,7 @@ resource function_app 'Microsoft.Web/sites@2022-03-01' = {
 
 var StorageAccountAccessKey = listKeys(storageAccountId , storageAccountapiversion).keys[0].value //storage info from output in storage.bicep
 
-module appSettings 'appSettings.bicep' = {
+module appSettings 'appsettings.bicep' = {
   name: 'Function-appSettings'
   params: {
     function_app_name: function_app_name
