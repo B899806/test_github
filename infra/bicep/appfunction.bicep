@@ -93,11 +93,11 @@ module appSettings 'appSettings.bicep' = {
       APPINSIGHTS_INSTRUMENTATIONKEY: AppInsightsInstrumentationKey
       APPLICATIONINSIGHTS_CONNECTION_STRING: 'InstrumentationKey=${AppInsightsInstrumentationKey}'
       AzureWebJobsStorage: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountname};EndpointSuffix=${environment().suffixes.storage};AccountKey=${AccountKey}'
-      FUNCTIONS_EXTENSION_VERSION: '~4'
+      FUNCTIONS_EXTENSION_VERSION: '~3'
       FUNCTIONS_WORKER_RUNTIME: 'dotnet'
       WEBSITE_CONTENTSHARE: toLower(storageAccountname)
       WEBSITE_CONTENTAZUREFILECONNECTIONSTRING: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountname}'
-      DiagnosticServices_EXTENSION_VERSION: '~4'
+      DiagnosticServices_EXTENSION_VERSION: '~3'
       EventHubName: eventhubname //from output of eventhub.bicep
       EventHubNSConnection: eventhubnamespaceconnection //from output of eventhub.bicep
       /*
