@@ -6,7 +6,7 @@ targetScope = 'resourceGroup'
 param location string = 'eastus2'
 param prefix string = 'as' // add prefix you want add to resources
 param rgname string = 'Bhoomika_GitAR'
-param keyvaultname string = 'kv-allsc'
+param keyvaultname string = 'kv-allsec'
 
 //param for function app
 param function_app_name string = 'bicep-func'
