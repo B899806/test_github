@@ -82,7 +82,7 @@ resource function_app 'Microsoft.Web/sites@2022-03-01' = {
 }
 
 
-module appSettings 'appSettings.bicep' = {
+module appSettings 'appsettings.bicep' = {
   name: 'Function-appSettings'
   params: {
     function_app_name: function_app_name
