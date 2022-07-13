@@ -14,22 +14,12 @@ param appservice_plan_name string = 'bicep-asp'
 param app_insights_name string = 'bicep-appinsights'
 param storageprefix string = prefix
 
-output stgaccountid string = stg.outputs.stgaccountid
-output stgaccountname string = stg.outputs.stgaccountname
-output stgaccountapiversion string = stg.outputs.stgaccountapiversion
-
-
-/*resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
-  name: rgname
-  location: location
-}*/
 
 module keyvault 'kv.bicep' = {
   scope: az.resourceGroup(rgname)
   name: 'keyvaultDeployment'
   params: {
     location: location
-    secretname: 'keyvaultname-secret'
     keyvaultname: keyvaultname
   }
 }
@@ -41,6 +31,7 @@ module stg './stg.bicep' = {
       location: location
       storageprefix: prefix
       storageAccountType: 'Standard_GRS'
+      keyvaultname:keyvaultname
   }
 }
 
@@ -48,23 +39,17 @@ module appfunction './appfunction.bicep' = {
   name: 'appfunctionDeployment'
   scope: az.resourceGroup(rgname)    // Deployed in the scope of resource group we created above
    params:{
+    storageAccountId:stg.outputs.stgaccountid
+    storageAccountapiversion:stg.outputs.stgaccountapiversion
     storageprefix: storageprefix
     location:location
     app_insights_name: app_insights_name
     appservice_plan_name: appservice_plan_name
     function_app_name: function_app_name
+    eventhubname:eventhub.outputs.eventHubName
+    eventhubnamespaceconnection:eventhub.outputs.eventHubNamespaceConnectionString
    }
-  //params: {
-      //location: location
-      //azAppFunctionPrefix: prefix
-      //storageAccountId: stg.outputs.stgaccountid
-      //storageAccountName: stg.outputs.stgaccountname
-      //storageAccountapiversion:stg.outputs.stgaccountapiversion
-      //eventhubname: eventhub.outputs.eventHubName
-      //eventhubnamespaceconnection: eventhub.outputs.eventHubNamespaceConnectionString
-  //}
 }
-
 
 module databricksWS './db.bicep' = {
   name: 'databricksWSDeployment'
