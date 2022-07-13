@@ -5,7 +5,8 @@ param eventhubname string
 param eventhubnamespaceconnection string
 param skuname string = 'Y1'
 param skutier string = 'Dynamic'
-var AccountKey = '${listKeys(storage_account.id, storage_account.apiVersion).keys[0].value}'
+param storageAccountId string
+param storageAccountapiversion string
 
 param location string = resourceGroup().location
 param storageprefix string
@@ -31,47 +32,12 @@ resource appservice_plan 'Microsoft.Web/serverfarms@2020-12-01' = {
   }
 }
 
-resource storage_account 'Microsoft.Storage/storageAccounts@2019-06-01' = {
-  name: storageAccountname
-  location: location
-  kind: 'StorageV2'
-  sku: {
-    name: 'Standard_LRS'
-  }
-  properties: {
-    minimumTlsVersion: 'TLS1_2'
-    allowBlobPublicAccess: false
-    allowSharedKeyAccess: true
-    isHnsEnabled: true
-    networkAcls: {
-      bypass: 'AzureServices'
-      defaultAction: 'Allow'
-    }
-    supportsHttpsTrafficOnly: true
-    encryption: {
-      services: {
-        file: {
-          keyType: 'Account'
-          enabled: true
-        }
-        blob: {
-          keyType: 'Account'
-          enabled: true
-        }
-      }
-      keySource: 'Microsoft.Storage'
-    }
-    accessTier: 'Hot'
-  }
-}
-
 
 resource function_app 'Microsoft.Web/sites@2022-03-01' = {
   name: unique_function_name
   location: location
   kind: 'functionapp'
   dependsOn: [
-    [storage_account]
     [appservice_plan]
     [app_insights]
   ]
@@ -81,8 +47,9 @@ resource function_app 'Microsoft.Web/sites@2022-03-01' = {
   }
 }
 
+var StorageAccountAccessKey = listKeys(storageAccountId , storageAccountapiversion).keys[0].value //storage info from output in storage.bicep
 
-module appSettings 'appsettings.bicep' = {
+module appSettings 'appSettings.bicep' = {
   name: 'Function-appSettings'
   params: {
     function_app_name: function_app_name
@@ -92,7 +59,7 @@ module appSettings 'appsettings.bicep' = {
       WEBSITE_RUN_FROM_PACKAGE: './eventhubfunction/function.zip'
       APPINSIGHTS_INSTRUMENTATIONKEY: AppInsightsInstrumentationKey
       APPLICATIONINSIGHTS_CONNECTION_STRING: 'InstrumentationKey=${AppInsightsInstrumentationKey}'
-      AzureWebJobsStorage: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountname};EndpointSuffix=${environment().suffixes.storage};AccountKey=${AccountKey}'
+      AzureWebJobsStorage: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountname};EndpointSuffix=${environment().suffixes.storage};AccountKey=${StorageAccountAccessKey}'
       FUNCTIONS_EXTENSION_VERSION: '~3'
       FUNCTIONS_WORKER_RUNTIME: 'dotnet'
       WEBSITE_CONTENTSHARE: toLower(storageAccountname)
