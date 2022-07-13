@@ -60,7 +60,7 @@ resource appsettings 'Microsoft.Web/sites/config@2022-03-01' = {
     FUNCTIONS_EXTENSION_VERSION: '~3'
     FUNCTIONS_WORKER_RUNTIME: 'dotnet'
     WEBSITE_CONTENTSHARE: toLower(storageAccountname)
-    WEBSITE_CONTENTAZUREFILECONNECTIONSTRING: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountname}'
+    WEBSITE_CONTENTAZUREFILECONNECTIONSTRING: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountname};EndpointSuffix=${environment().suffixes.storage};AccountKey=${StorageAccountAccessKey}'
     DiagnosticServices_EXTENSION_VERSION: '~3'
     EventHubName: eventhubname //from output of eventhub.bicep
     EventHubNSConnection: eventhubnamespaceconnection //from output of eventhub.bicep
