@@ -13,6 +13,9 @@
         },
         "function_app_name":{
             "value": "bicep"
+        },
+        "localtionprefix": {
+            "value": "eus2"
         }
     
     }
