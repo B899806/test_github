@@ -1,17 +1,23 @@
-param function_app_name string
+@description('Provide function app parameters')
+param unique_function_name string
 param appservice_plan_name string
 param app_insights_name string
+param location string
+
+
+@description('Provide function app settings parameters')
 param eventhubname string
 param eventhubnamespaceconnection string
 param skuname string = 'Y1'
 param skutier string = 'Dynamic'
-param storageAccountId string
-param storageAccountapiversion string
+param storagAccountename string
 
-param location string = resourceGroup().location
-param storageprefix string
-var storageAccountname = '${storageprefix}stg${uniqueString(resourceGroup().id)}'
-var unique_function_name = '${function_app_name}-${uniqueString(resourceGroup().id)}'
+@description('variable to get storage account key')
+var storageAccountId = StorageAccount.id
+var storageAccountapiversion = StorageAccount.apiVersion
+var StorageAccountAccessKey = listKeys(storageAccountId , storageAccountapiversion).keys[0].value //storage info from output in storage.bicep
+
+
 var AppInsightsInstrumentationKey = app_insights.properties.InstrumentationKey
 
 resource app_insights 'Microsoft.Insights/components@2015-05-01' = {
@@ -46,7 +52,9 @@ resource function_app 'Microsoft.Web/sites@2022-03-01' = {
     }
 }
 
-var StorageAccountAccessKey = listKeys(storageAccountId , storageAccountapiversion).keys[0].value //storage info from output in storage.bicep
+resource StorageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' existing = {
+  name: storagAccountename
+}
 
 resource appsettings 'Microsoft.Web/sites/config@2022-03-01' = {
   name: 'appsettings'
@@ -56,11 +64,9 @@ resource appsettings 'Microsoft.Web/sites/config@2022-03-01' = {
     WEBSITE_RUN_FROM_PACKAGE: './eventhubfunction/function.zip'
     APPINSIGHTS_INSTRUMENTATIONKEY: AppInsightsInstrumentationKey
     APPLICATIONINSIGHTS_CONNECTION_STRING: 'InstrumentationKey=${AppInsightsInstrumentationKey}'
-    AzureWebJobsStorage: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountname};EndpointSuffix=${environment().suffixes.storage};AccountKey=${StorageAccountAccessKey}'
+    AzureWebJobsStorage: 'DefaultEndpointsProtocol=https;AccountName=${storagAccountename};EndpointSuffix=${environment().suffixes.storage};AccountKey=${StorageAccountAccessKey}'
     FUNCTIONS_EXTENSION_VERSION: '~3'
     FUNCTIONS_WORKER_RUNTIME: 'dotnet'
-    /*WEBSITE_CONTENTSHARE: toLower(storageAccountname)
-    WEBSITE_CONTENTAZUREFILECONNECTIONSTRING: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountname};EndpointSuffix=${environment().suffixes.storage};AccountKey=${StorageAccountAccessKey}'*/
     DiagnosticServices_EXTENSION_VERSION: '~3'
     EventHubName: eventhubname //from output of eventhub.bicep
     EventHubNSConnection: eventhubnamespaceconnection //from output of eventhub.bicep
