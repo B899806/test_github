@@ -1,6 +1,6 @@
 param keyvaultname string
 param location string
-param storagAccountename string
+param unique_stgaccount_name string
 
 var storageAccountId = StorageAccount.id
 var storageAccountapiversion = StorageAccount.apiVersion
@@ -37,7 +37,7 @@ resource keyvault 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
 }
 
 resource StorageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' existing = {
-  name: storagAccountename
+  name: unique_stgaccount_name
 }
 
 resource keyvault_secret 'Microsoft.KeyVault/vaults/secrets@2019-09-01' = {
