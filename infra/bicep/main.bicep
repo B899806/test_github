@@ -10,7 +10,7 @@ param rgname string
 param locationprefix string
 
 //param for function app
-param function_app_name string = 'bicep-func'
+param function_app_name string
 param appservice_plan_name string = 'bicep-asp'
 param app_insights_name string = 'bicep-appinsights'
 param unique_function_name string = '${prefix}-${function_app_name}-${locationprefix}'
@@ -21,6 +21,7 @@ param keyvaultname string = 'kv-allsc'
 
 //param for storage account
 param storagAccountename string
+param unique_stgaccount_name string = '${prefix}${storagAccountename}${locationprefix}'
 
 
 module keyvault 'kv.bicep' = {
@@ -29,7 +30,7 @@ module keyvault 'kv.bicep' = {
   params: {
     location: location
     keyvaultname: keyvaultname
-    storagAccountename:storagAccountename
+    unique_stgaccount_name:unique_stgaccount_name
   }
 }
 
@@ -38,8 +39,8 @@ module stg './stg.bicep' = {
   scope: az.resourceGroup(rgname)    // Deployed in the scope of resource group we created above
   params: {
       location: location
-      storageprefix: prefix
       storageAccountType: 'Standard_GRS'
+      unique_stgaacct_name:unique_stgaccount_name
   }
 }
 
@@ -47,7 +48,7 @@ module appfunction './appfunction.bicep' = {
   name: 'appfunctionDeployment'
   scope: az.resourceGroup(rgname)    // Deployed in the scope of resource group we created above
    params:{
-    storagAccountename:storagAccountename
+    storagAccountename:unique_stgaccount_name
     unique_function_name:unique_function_name
     location:location
     app_insights_name: app_insights_name
