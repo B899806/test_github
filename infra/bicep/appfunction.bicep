@@ -60,6 +60,9 @@ resource appsettings 'Microsoft.Web/sites/config@2022-03-01' = {
   name: 'appsettings'
   kind: 'functionapp'
   parent: function_app
+  dependsOn:[
+    StorageAccount
+  ]
   properties:{
     WEBSITE_RUN_FROM_PACKAGE: './eventhubfunction/function.zip'
     APPINSIGHTS_INSTRUMENTATIONKEY: AppInsightsInstrumentationKey
