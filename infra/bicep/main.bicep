@@ -31,6 +31,7 @@ module stg './stg.bicep' = {
       location: location
       storageprefix: prefix
       storageAccountType: 'Standard_GRS'
+      keyvaultname:keyvault.name
   }
 }
 
