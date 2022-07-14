@@ -48,7 +48,7 @@ module appfunction './appfunction.bicep' = {
   name: 'appfunctionDeployment'
   scope: az.resourceGroup(rgname)    // Deployed in the scope of resource group we created above
    params:{
-    storagAccountename:unique_stgaccount_name
+    unique_stgaccount_name:unique_stgaccount_name
     unique_function_name:unique_function_name
     location:location
     app_insights_name: app_insights_name
