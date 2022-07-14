@@ -41,7 +41,7 @@ resource StorageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' existing 
 }
 
 resource keyvault_secret 'Microsoft.KeyVault/vaults/secrets@2019-09-01' = {
-  name: '${keyvaultname}-stgconstring'
+  name: '${keyvaultname}/stgconstring'
   properties: {
     attributes:{
       enabled:true
