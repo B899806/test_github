@@ -20,8 +20,8 @@ param unique_function_name string = '${prefix}-${function_app_name}-${locationpr
 param keyvaultname string = 'kv-allsc'
 
 //param for storage account
-param storagAccountename string
-param unique_stgaccount_name string = '${prefix}${storagAccountename}${locationprefix}'
+param storagAccountname string
+param unique_stgaccount_name string = '${prefix}${storagAccountname}${locationprefix}'
 
 
 module keyvault 'kv.bicep' = {
