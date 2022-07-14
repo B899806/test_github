@@ -1,4 +1,3 @@
-
 @allowed([
   'Standard_LRS'
   'Standard_GRS'
@@ -9,8 +8,9 @@ param storageAccountType string
 param location string = resourceGroup().location
 param storageprefix string //from main
 param keyvaultname string
+
 var secret = '${keyvaultname}-connstring'
-param storagAccountename string = '${storageprefix}-stg'
+var storagAccountename = '${storageprefix}stg806'
 var storageaccountkey = listKeys(StorageAccount.id, StorageAccount.apiVersion).keys[0].value
 
 output storageaccountkey string = storageaccountkey
