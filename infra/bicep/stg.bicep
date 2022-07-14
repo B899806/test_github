@@ -6,13 +6,11 @@
 ])
 param storageAccountType string
 param location string
-param storageprefix string
-
-param storagAccountename string = '${storageprefix}stg806'
+param unique_stgaacct_name string
 
 // resource definition
 resource StorageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
-  name: storagAccountename
+  name: unique_stgaacct_name
   location: location
   
   kind: 'StorageV2'
