@@ -1,5 +1,10 @@
 param keyvaultname string
 param location string
+param storagAccountename string
+
+var storageAccountId = StorageAccount.id
+var storageAccountapiversion = StorageAccount.apiVersion
+var StorageAccountAccessKey = listKeys(storageAccountId , storageAccountapiversion).keys[0].value //storage info from output in storage.bicep
 
 resource keyvault 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
   name: keyvaultname
@@ -31,4 +36,16 @@ resource keyvault 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
   }
 }
 
-output keyvaultname string = keyvault.name
+resource StorageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' existing = {
+  name: storagAccountename
+}
+
+resource keyvault_secret 'Microsoft.KeyVault/vaults/secrets@2019-09-01' = {
+  name: '${keyvaultname}-stgconstring'
+  properties: {
+    attributes:{
+      enabled:true
+    }
+    value: StorageAccountAccessKey
+  }
+}
