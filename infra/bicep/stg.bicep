@@ -9,7 +9,7 @@ param storageAccountType string
 param location string = resourceGroup().location
 param storageprefix string //from main
 param keyvaultname string
-param sgaccountconnectionstring string = '${storagAccountename}-connstring'
+var secret = '${keyvaultname}-connstring'
 param storagAccountename string = '${storageprefix}-stg'
 var storageaccountkey = listKeys(StorageAccount.id, StorageAccount.apiVersion).keys[0].value
 
@@ -37,8 +37,8 @@ resource keyvault 'Microsoft.KeyVault/vaults@2021-10-01' existing = {
   name: keyvaultname
 }
 
-resource storageAccountConnectionString 'Microsoft.KeyVault/vaults/secrets@2019-09-01' = {
-  name: sgaccountconnectionstring
+resource keyvault_secret 'Microsoft.KeyVault/vaults/secrets@2019-09-01' = {
+  name: secret
   parent:keyvault
   properties: {
     value: 'DefaultEndpointsProtocol=https;AccountName=${StorageAccount.name};AccountKey=${listKeys(StorageAccount.id, StorageAccount.apiVersion).keys[0].value}'
