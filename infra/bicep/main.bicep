@@ -17,7 +17,7 @@ param unique_function_name string = '${prefix}-${function_app_name}-${locationpr
 
 
 //param for keyvault and secret
-param keyvaultname string = 'kv-allsc'
+param keyvaultname string = 'kv-allsec'
 
 //param for storage account
 param storagAccountname string
