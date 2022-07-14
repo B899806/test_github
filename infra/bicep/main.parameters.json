@@ -14,8 +14,11 @@
         "function_app_name":{
             "value": "bicep"
         },
-        "localtionprefix": {
+        "locationprefix": {
             "value": "eus2"
+        },
+        "storagAccountename":{
+            "value": "bicep"
         }
     
     }
