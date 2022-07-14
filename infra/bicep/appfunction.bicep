@@ -10,7 +10,7 @@ param eventhubname string
 param eventhubnamespaceconnection string
 param skuname string = 'Y1'
 param skutier string = 'Dynamic'
-param storagAccountename string
+param unique_stgaccount_name string
 
 @description('variable to get storage account key')
 var storageAccountId = StorageAccount.id
@@ -53,7 +53,7 @@ resource function_app 'Microsoft.Web/sites@2022-03-01' = {
 }
 
 resource StorageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' existing = {
-  name: storagAccountename
+  name: unique_stgaccount_name
 }
 
 resource appsettings 'Microsoft.Web/sites/config@2022-03-01' = {
@@ -64,7 +64,7 @@ resource appsettings 'Microsoft.Web/sites/config@2022-03-01' = {
     WEBSITE_RUN_FROM_PACKAGE: './eventhubfunction/function.zip'
     APPINSIGHTS_INSTRUMENTATIONKEY: AppInsightsInstrumentationKey
     APPLICATIONINSIGHTS_CONNECTION_STRING: 'InstrumentationKey=${AppInsightsInstrumentationKey}'
-    AzureWebJobsStorage: 'DefaultEndpointsProtocol=https;AccountName=${storagAccountename};EndpointSuffix=${environment().suffixes.storage};AccountKey=${StorageAccountAccessKey}'
+    AzureWebJobsStorage: 'DefaultEndpointsProtocol=https;AccountName=${unique_stgaccount_name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${StorageAccountAccessKey}'
     FUNCTIONS_EXTENSION_VERSION: '~3'
     FUNCTIONS_WORKER_RUNTIME: 'dotnet'
     DiagnosticServices_EXTENSION_VERSION: '~3'
