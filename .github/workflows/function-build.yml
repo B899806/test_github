@@ -12,10 +12,11 @@ jobs:
       uses: actions/checkout@main
       with:
         dotnet-version: 5.0.x
+        path: ./functionapp
 
     # dotnet build and publish
     - name: Build with dotnet
-      run: dotnet build --source ./functionapp --configuration Release
+      run: dotnet build --configuration Release
       
     - name: dotnet publish
       run: |
@@ -25,13 +26,13 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
           name: eventfunction
-          path: ./eventhubfunction/function.zip
+          path: ./functionapp/function.zip
           
     - name: Download a Build Artifact
       uses: actions/download-artifact@v3.0.0
       with:
           name: eventfunction
-          path: ../eventhubfunction
+          path: ../functionapp
     - name: azure login
       uses: azure/login@v1
       with:
