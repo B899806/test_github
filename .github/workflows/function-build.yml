@@ -27,13 +27,13 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
           name: eventfunction
-          path: ./functionapp/*.zip
+          path: ./functionapp/**.zip
           
     - name: Download a Build Artifact
       uses: actions/download-artifact@v3.0.0
       with:
           name: eventfunction
-          path: ../functionapp/*.zip
+          path: ../functionapp/**.zip
     - name: azure login
       uses: azure/login@v1
       with:
