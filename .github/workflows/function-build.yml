@@ -12,15 +12,16 @@ jobs:
       uses: actions/checkout@main
       with:
         dotnet-version: 5.0.x
-        path: ./functionapp
 
     # dotnet build and publish
     - name: Build with dotnet
       run: dotnet build --configuration Release
+      working-directory: ./functionapp
       
     - name: dotnet publish
       run: |
-        dotnet publish -c Release -o ./eventhubfunction/function.zip
+        dotnet publish -c Release -o ./functionapp/function.zip
+      working-directory: ./functionapp
         
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3
