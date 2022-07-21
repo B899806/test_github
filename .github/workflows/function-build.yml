@@ -20,20 +20,20 @@ jobs:
       
     - name: dotnet publish
       run: |
-        dotnet publish -c Release -o ./functionapp/function.zip
+        dotnet publish -c Release -o ./functionapp/*.zip
       working-directory: ./functionapp
         
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3
       with:
           name: eventfunction
-          path: ./functionapp/**.zip
+          path: ./functionapp/*.zip
           
     - name: Download a Build Artifact
       uses: actions/download-artifact@v3.0.0
       with:
           name: eventfunction
-          path: ../functionapp/**.zip
+          path: ../functionapp/*.zip
     - name: azure login
       uses: azure/login@v1
       with:
