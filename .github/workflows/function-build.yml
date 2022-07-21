@@ -45,6 +45,6 @@ jobs:
       with:
         app-name: 'bicep-func-qvjpsokjsb7hs'
         slot-name: 'production'
-        package: './eventhubfunction/function.zip'
+        package: './functionapp/eventfunction'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_392c7418368b4607a07b44469dc2d1f2 }}
 
