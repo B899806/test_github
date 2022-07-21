@@ -27,7 +27,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
           name: eventfunction
-          path: ./functionapp/function.zip
+          path: ./functionapp
           
     - name: Download a Build Artifact
       uses: actions/download-artifact@v3.0.0
