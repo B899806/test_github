@@ -20,14 +20,14 @@ jobs:
       
     - name: dotnet publish
       run: |
-        dotnet publish -c Release -o ./functionapp
+        dotnet publish -c Release
       working-directory: ./functionapp
         
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3
       with:
           name: eventfunction
-          path: ./functionapp/*.zip
+          path: ./functionapp
           
     - name: Download a Build Artifact
       uses: actions/download-artifact@v3.0.0
