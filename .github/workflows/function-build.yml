@@ -29,6 +29,16 @@ jobs:
           dotnet build --configuration Release --output ./functionapp/output
           popd
 
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          path: ./functionapp/output
+          
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v3.0.0
+        with:
+          path: './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
+          
       - name: azure login
         uses: azure/login@v1
         with:
