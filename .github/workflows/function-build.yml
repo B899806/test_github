@@ -20,7 +20,7 @@ jobs:
       
     - name: dotnet publish
       run: |
-        dotnet publish -c Release
+        dotnet publish -c Release -o function.zip
       working-directory: ./functionapp
         
     - name: Upload a Build Artifact
