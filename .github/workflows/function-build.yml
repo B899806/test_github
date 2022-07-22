@@ -26,20 +26,20 @@ jobs:
         shell: pwsh
         run: |
           pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
-          dotnet build --configuration Release --output ./functionapp/ouput/function.zip
+          dotnet build --configuration Release --output ./functionapp/function.zip
           popd
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3
         with:
           name: eventfunction
-          path: ./functionapp/output
+          path: ./functionapp
           
       - name: Download a Build Artifact
         uses: actions/download-artifact@v3.0.0
         with:
           name: eventfunction
-          path: './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
+          path: './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
           
       - name: azure login
         uses: azure/login@v1
@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'allsec-bicep-eus2'
           slot-name: 'functiondeploy'
-          package: './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
+          package: './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_d9eaf3989c05416bafa1c4db542bf4b5 }}
