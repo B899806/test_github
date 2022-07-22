@@ -1,50 +1,39 @@
-name: .NET Function build from sln
+name: Build and deploy dotnet core app to Azure Function App - allsec-bicep-eus2
+
 on:
-  workflow_dispatch
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: './functionapp' # set this to the path to your web app project, defaults to the repository root
+  DOTNET_VERSION: '3.6' # set this to the dotnet version to use
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      # Checkout code
-    - uses: actions/checkout@main
-    
-    - name: Setup .NET
-      uses: actions/checkout@main
-      with:
-        dotnet-version: 5.0.x
+      - name: 'Checkout GitHub Action'
+        uses: actions/checkout@v2
 
-    # dotnet build and publish
-    - name: Build with dotnet
-      run: dotnet build --configuration Release
-      working-directory: ./functionapp
-      
-    - name: dotnet publish
-      run: |
-        dotnet publish -c Release -o function.zip
-      working-directory: ./functionapp
-        
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v3
-      with:
-          name: eventfunction
-          path: ./functionapp
-          
-    - name: Download a Build Artifact
-      uses: actions/download-artifact@v3.0.0
-      with:
-          name: eventfunction
-          path: ../functionapp/*.zip
-    - name: azure login
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-        
-    - name: 'Run Azure Functions Action'
-      uses: Azure/functions-action@v1
-      id: fa
-      with:
-        app-name: 'allsec-bicep-eus2'
-        slot-name: 'production'
-        package: './functionapp/function.zip'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_d9eaf3989c05416bafa1c4db542bf4b5 }}
+      - name: Setup DotNet ${{ env.DOTNET_VERSION }} Environment
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
 
+      - name: 'Resolve Project Dependencies Using Dotnet'
+        shell: pwsh
+        run: |
+          pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+          dotnet build --configuration Release --output ./functionapp/output
+          popd
+
+      - name: 'Run Azure Functions Action'
+        uses: Azure/functions-action@v1
+        id: fa
+        with:
+          app-name: 'allsec-bicep-eus2'
+          slot-name: 'functiondeploy'
+          package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_d9eaf3989c05416bafa1c4db542bf4b5 }}
