@@ -26,7 +26,7 @@ jobs:
         shell: pwsh
         run: |
           pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
-          dotnet build --configuration Release --output ./functionapp/output
+          dotnet build --configuration Release --output ./functionapp/ouput/function.zip
           popd
 
       - name: Upload a Build Artifact
@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'allsec-bicep-eus2'
           slot-name: 'functiondeploy'
-          package: 'eventfunction'
+          package: './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_d9eaf3989c05416bafa1c4db542bf4b5 }}
