@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'allsec-bicep-eus2'
           #slot-name: 'functiondeploy'
-          package: './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+          package: './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/functionapp'
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_d9eaf3989c05416bafa1c4db542bf4b5 }}
